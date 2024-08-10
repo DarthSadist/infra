@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: true
+  vars:
+    extra_packages: "{{ prod_extra_packages if inventory_hostname in groups['prod'] else stage_extra_packages }}"
+  roles:
+    - docker_launch
